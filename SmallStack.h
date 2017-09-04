@@ -13,10 +13,14 @@ public:
 	{
 		Data.fill(T{});
 	};
+	SmallStack(const SmallStack<T, N>& o)
+		: Data{ o.Data }, 
+		Itr{ Data.begin() + std::distance<std::array<T, N>::const_iterator>(o.Data.begin(), o.Itr) }
+	{}
 	~SmallStack() {};
 	inline void Push(T element);
 	inline T Pop();
-	/*inline*/ T Top() const;
+	inline T Top() const;
 	inline bool Empty() const;
 	inline size_t Size() const;
 	inline size_t Slack() const;
@@ -48,7 +52,7 @@ T SmallStack<T, N>::Top() const {
 
 template<typename T, int N>
 bool SmallStack<T, N>::Empty() const {
-	return Itr == Data.begin():
+	return Itr == Data.begin();
 }
 
 template<typename T, int N>
